@@ -1,0 +1,23 @@
+services:
+  mcp-serper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: serper
+    environment:
+      - SERPER_API_KEY=${SERPER_API_KEY}
+    restart: unless-stopped
+    networks:
+      - avatar-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9006/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+networks:
+  avatar-network:
+    external: true
+    name: das-backend_avatar-network
