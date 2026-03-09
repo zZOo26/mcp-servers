@@ -5,8 +5,8 @@ services:
       dockerfile: Dockerfile
       args:
         SERVICE: serper
-    environment:
-      - SERPER_API_KEY=${SERPER_API_KEY}
+    env_file:
+      - serper/.env
     restart: unless-stopped
     networks:
       - avatar-network

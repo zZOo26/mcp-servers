@@ -1,6 +1,6 @@
 ARG SERVICE=serper
 
-FROM golang:1.23-alpine AS builder
+FROM golang:1.25-alpine AS builder
 ARG SERVICE
 WORKDIR /build
 COPY shared/ ./shared/
