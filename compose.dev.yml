@@ -16,6 +16,25 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+  
+  mcp-tavily:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: tavily
+    env_file:
+      - tavily/.env
+    restart: unless-stopped
+    networks:
+      - avatar-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9003/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
 
 networks:
   avatar-network:
