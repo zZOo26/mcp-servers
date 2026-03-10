@@ -17,7 +17,7 @@ func main() {
 		log.Fatal("SERPER_API_KEY is required")
 	}
 
-	port := os.Getenv("PORT")
+	port := os.Getenv("SERPER_PORT")
 	if port == "" {
 		port = "9006"
 	}

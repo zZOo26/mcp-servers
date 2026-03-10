@@ -2,12 +2,14 @@ services:
   mcp-serper:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       args:
         SERVICE: serper
     env_file:
       - .env
     restart: unless-stopped
+    ports:
+      - "9006:9006"
     networks:
       - avatar-network
     healthcheck:
@@ -20,12 +22,14 @@ services:
   mcp-tavily:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       args:
         SERVICE: tavily
     env_file:
       - .env
     restart: unless-stopped
+    ports:
+      - "9003:9003"
     networks:
       - avatar-network
     healthcheck:
@@ -38,12 +42,14 @@ services:
   mcp-gtfs-transit:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       args:
         SERVICE: gtfs-transit
     env_file:
       - .env
     restart: unless-stopped
+    ports:
+      - "9007:9007"
     networks:
       - avatar-network
     healthcheck:

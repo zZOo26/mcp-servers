@@ -17,7 +17,7 @@ func main() {
 		log.Fatal("TAVILY_API_KEY is required")
 	}
 
-	port := os.Getenv("PORT")
+	port := os.Getenv("TAVILY_PORT")
 	if port == "" {
 		port = "9003"
 	}

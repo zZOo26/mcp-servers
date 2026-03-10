@@ -1,0 +1,12 @@
+ARG SERVICE=serper
+
+FROM golang:1.25-alpine
+ARG SERVICE
+RUN apk add --no-cache wget
+WORKDIR /build
+COPY shared/ ./shared/
+COPY ${SERVICE}/ ./${SERVICE}/
+WORKDIR /build/${SERVICE}
+RUN go mod download
+RUN CGO_ENABLED=0 go build -o server .
+ENTRYPOINT ["/build/${SERVICE}/server"]
